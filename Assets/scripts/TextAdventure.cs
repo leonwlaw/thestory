@@ -3,6 +3,8 @@ using System.Collections;
 
 public class TextAdventure : MonoBehaviour {
 
+	bool DEBUG = false;
+
 	enum State {
 		Unknown,
 		Confused,
@@ -30,11 +32,16 @@ public class TextAdventure : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		string textBuffer = (state != State.Unknown) ?
+		string textBuffer = "";
+
+		if (DEBUG) {
+			textBuffer += "Spazz count: " + spazzesInState.ToString() + "\n\n";
+		}
+
+		textBuffer += (state != State.Unknown) ?
 		"You are now [" + state.ToString() + "]!" :
 		"You have no idea where you are!";
 
-		textBuffer += spazzesInState.ToString();
 		switch (state) {
 			case State.Unknown:
 				textBuffer += "\nYou should probably do something.\nProbably.";
